@@ -1,8 +1,8 @@
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 // eslint-disable-next-line react/prop-types
-function DefaultLayout({ children }) {
+function HeaderOnly({ children }) {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ function DefaultLayout({ children }) {
   );
 }
 
-export default DefaultLayout;
+export default HeaderOnly;
