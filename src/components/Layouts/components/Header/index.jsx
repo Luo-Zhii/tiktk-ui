@@ -9,7 +9,7 @@ import { Wrapper as ProperWrapper } from "../../../Proper";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import AccountItems from "../AccountItems";
-
+import Button from "../Button";
 const cn = classNames.bind(styles);
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -52,7 +52,10 @@ function Header() {
           </div>
         </Tippy>
         <div className={cn("action")}>
-          <button>Log in</button>
+          <Button types="text" size="">
+            Upload
+          </Button>
+          <Button types="primary">Log in</Button>
         </div>
       </div>
     </header>
