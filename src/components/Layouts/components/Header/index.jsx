@@ -25,6 +25,51 @@ function Header() {
     {
       icon: <FontAwesomeIcon icon={faBookAtlas} />,
       title: "English",
+      children: {
+        title: "language",
+        data: [
+          {
+            type: "language",
+            code: "en",
+            title: "English", // United States, Canada, Australia, etc.
+          },
+          {
+            type: "language",
+            code: "vi",
+            title: "Tiếng Việt", // Vietnam
+          },
+          {
+            type: "language",
+            code: "fi",
+            title: "Suomi", // Finland
+          },
+          {
+            type: "language",
+            code: "no",
+            title: "Norsk", // Norway
+          },
+          {
+            type: "language",
+            code: "se",
+            title: "Svenska", // Sweden
+          },
+          {
+            type: "language",
+            code: "dk",
+            title: "Dansk", // Denmark
+          },
+          {
+            type: "language",
+            code: "ch",
+            title: "Schweizerdeutsch", // Switzerland (Swiss German)
+          },
+          {
+            type: "language",
+            code: "nl",
+            title: "Nederlands", // Netherlands
+          },
+        ],
+      },
     },
     {
       icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -42,6 +87,17 @@ function Header() {
       setSearchResult([]);
     }, 3000);
   }, []);
+
+  const handleMenuChange = (menuItem) => {
+    switch (menuItem.type) {
+      case "language":
+        console.log("Language selected:", menuItem.code);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <header className={cn("wrapper")}>
       <div className={cn("inner")}>
@@ -80,7 +136,7 @@ function Header() {
             Upload
           </Button>
           <Button types="primary">Log in</Button>
-          <Menu items={MENU_ITEMS}>
+          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
             <button className={cn("more-btn")}>
               {<FontAwesomeIcon icon={faEllipsisVertical} />}
             </button>
