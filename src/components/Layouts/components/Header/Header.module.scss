@@ -20,6 +20,7 @@
 .logo {
 }
 
+// Search
 .search,
 .search-result {
   width: 50rem;
@@ -74,17 +75,28 @@
   font-weight: 600;
   color: rgba(22, 24, 35, 0.5);
 }
-
+//  In search
 .clear-btn,
 .loading {
   position: absolute;
   right: calc(var(--search-button-width) + 16px);
   top: 50%;
-  transform: translateY(-50%);
   color: rgba(22, 24, 35, 0.34);
   font-size: 1.4rem;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 
+// .loading {
+//   animation: 1s linear 0s infinite normal none running loading-circle-anim;
+//   -webkit-animation: 1s linear 0s infinite normal none running
+//     loading-circle-anim;
+// }
+
+// Button search
 .search-btn {
   width: 5.2rem;
   height: 4.6rem;
@@ -109,6 +121,7 @@
   }
 }
 
+// tooltip popper
 .more-btn {
   font-size: 2rem;
   margin-left: 16px;
@@ -117,6 +130,7 @@
   background-color: transparent;
 }
 
+// action
 .action {
   display: flex;
   justify-content: center;
@@ -132,11 +146,31 @@
 .user-avatar {
   width: 32px;
   height: 32px;
-  margin-left: 12px;
+  margin-top: 4px;
+  margin-left: 8px;
   object-fit: cover;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+// keyframe animation
+@keyframes loading-circle-anim {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
 }
