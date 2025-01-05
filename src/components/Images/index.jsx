@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import { useState, forwardRef } from "react";
 import classNames from "classnames";
-import images from "../../../../assets/images";
+import images from "../../assets/images";
 import styles from "./Images.module.scss";
 
 const Images = forwardRef(

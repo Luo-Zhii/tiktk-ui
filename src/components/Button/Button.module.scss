@@ -48,6 +48,18 @@
   }
 }
 
+.no-color {
+  color: var(--black);
+  border: 1px solid rgba(22, 24, 35, 0.9);
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.06);
+    border-color: rgba(22, 24, 35, 0.12);
+  }
+  &.span {
+    margin-bottom: 4px;
+  }
+}
+
 .text {
   &:hover {
     text-decoration: underline;
@@ -67,6 +79,10 @@
 .small {
   min-width: 88px;
   padding: 4px 16px;
+}
+.medium {
+  min-width: 110px;
+  padding: 0px 16px;
 }
 .large {
   min-width: 200px;

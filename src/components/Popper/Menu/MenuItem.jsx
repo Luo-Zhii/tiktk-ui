@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import Button from "../../Layouts/components/Button";
+import Button from "../../Button";
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 const cn = classNames.bind(styles);
