@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import HeadlessTippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
+import * as searchServices from "../../../../services/searchServices";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
@@ -12,6 +13,7 @@ import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 import AccountItems from "../../../AccountItems";
 import useDebounce from "../../../../hooks/useDebounce";
+
 const cn = classNames.bind(styles);
 
 function Search() {
@@ -31,20 +33,15 @@ function Search() {
       return;
     }
 
-    setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
+      const result = await searchServices.search(debounced);
 
-    fetch(
-      `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-        debounced
-      )}&type=less`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        setSearchResult(res.data), setLoading(false);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      setSearchResult(result);
+      setLoading(false);
+    };
+
+    fetchApi();
   }, [debounced]);
 
   const handleClear = () => {
