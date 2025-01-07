@@ -6,7 +6,6 @@ const cn = classNames.bind(styles);
 
 function MenuItem({ data, onClick }) {
   const classes = cn("menu-item", { separate: data.separate });
-
   return (
     <Button
       className={classes}
