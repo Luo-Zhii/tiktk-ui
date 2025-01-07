@@ -9,7 +9,7 @@ const cn = classNames.bind(styles);
 
 function AccountItems({ data }) {
   return (
-    <Link to={`/@${data.nickname}`} className={cn("wrapper")}>
+    <Link to={`/tiktk-ui/profile/@${data.nickname}`} className={cn("wrapper")}>
       <Images className={cn("avatar")} src={data.avatar} alt={data.full_name} />
       <div className={cn("info")}>
         <h4 className={cn("name")}>

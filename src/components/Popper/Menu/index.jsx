@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../index";
@@ -8,7 +9,12 @@ import styles from "./Menu.module.scss";
 const cn = classNames.bind(styles);
 const defaultFn = () => {};
 // eslint-disable-next-line react/prop-types
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({
+  children,
+  items = [],
+  hideOnClick = false,
+  onChange = defaultFn,
+}) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
   const renderItems = () => {
@@ -33,6 +39,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
   return (
     <Tippy
       interactive
+      hideOnClick={hideOnClick}
       delay={[0, 700]}
       offset={[12, 8]}
       placement="bottom-end"
@@ -47,7 +54,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
                 }}
               />
             )}
-            {renderItems()}
+            <div className={cn("menu-body")}>{renderItems()}</div>
           </PopperWrapper>
         </div>
       )}

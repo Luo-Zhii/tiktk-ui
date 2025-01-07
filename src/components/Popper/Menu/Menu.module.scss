@@ -5,6 +5,10 @@
   }
 }
 
+.menu-body {
+  overflow-y: overlay;
+}
+
 // Menu items
 .menu-item {
   color: rgb(22, 24, 35);
@@ -34,6 +38,7 @@
   height: 50px;
   margin-top: -8px;
   font-size: 1.8rem;
+  flex-shrink: 0;
 }
 
 .back-btn {

@@ -3,6 +3,6 @@ import styles from "./Popper.module.scss";
 const cn = classNames.bind(styles);
 // eslint-disable-next-line react/prop-types
 function Wrapper({ children }) {
-  return <div className={cn("wrapper")}>{children}</div>;
+  return <div className={cn("popper-wrapper")}>{children}</div>;
 }
 export default Wrapper;

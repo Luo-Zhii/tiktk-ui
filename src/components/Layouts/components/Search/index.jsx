@@ -53,6 +53,14 @@ function Search() {
     setShowResult(false);
   };
 
+  const handleSearchInput = (e) => {
+    let searchValue = e.target.value;
+    if (searchValue[0] === " ") {
+      searchValue = searchValue.trim();
+    }
+    setSearchValue(searchValue);
+  };
+
   return (
     <HeadlessTippy
       visible={showResult && searchResult.length > 0}
@@ -75,7 +83,7 @@ function Search() {
           placeholder="feel the rush..."
           spellCheck={false}
           ref={inputRef}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={handleSearchInput}
           onFocus={() => setShowResult(true)}
         />
         {!!searchValue && !loading && (
@@ -87,7 +95,10 @@ function Search() {
         {loading && (
           <FontAwesomeIcon className={cn("loading")} icon={faSpinner} />
         )}
-        <button className={cn("search-btn")}>
+        <button
+          className={cn("search-btn")}
+          onClick={(e) => e.preventDefault()}
+        >
           {<FontAwesomeIcon icon={faMagnifyingGlass} />}
         </button>
       </div>

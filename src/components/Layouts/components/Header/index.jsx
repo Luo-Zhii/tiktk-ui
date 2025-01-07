@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import images from "../../../../assets/images";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
@@ -21,6 +22,7 @@ import {
 } from "../../../Icons";
 import Images from "../../../Images";
 import Search from "../Search";
+import routesConfig from "../../../../config/routes";
 
 const cn = classNames.bind(styles);
 function Header() {
@@ -77,6 +79,46 @@ function Header() {
             code: "nl",
             title: "Nederlands",
           },
+          {
+            type: "language",
+            code: "fr",
+            title: "Français",
+          },
+          {
+            type: "language",
+            code: "de",
+            title: "Deutsch",
+          },
+          {
+            type: "language",
+            code: "es",
+            title: "Español",
+          },
+          {
+            type: "language",
+            code: "it",
+            title: "Italiano",
+          },
+          {
+            type: "language",
+            code: "jp",
+            title: "日本語",
+          },
+          {
+            type: "language",
+            code: "kr",
+            title: "한국어",
+          },
+          {
+            type: "language",
+            code: "zh",
+            title: "中文",
+          },
+          {
+            type: "language",
+            code: "ru",
+            title: "Русский",
+          },
         ],
       },
     },
@@ -132,9 +174,9 @@ function Header() {
   return (
     <header className={cn("wrapper")}>
       <div className={cn("inner")}>
-        <div className={cn("logo")}>
+        <Link to={routesConfig.home}>
           <img src={images.logo} />
-        </div>
+        </Link>
 
         <Search />
 
