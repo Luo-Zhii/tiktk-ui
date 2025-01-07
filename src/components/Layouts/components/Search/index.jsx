@@ -62,47 +62,51 @@ function Search() {
   };
 
   return (
-    <HeadlessTippy
-      visible={showResult && searchResult.length > 0}
-      interactive={true}
-      render={(attrs) => (
-        <div className={cn("search-result")} tabIndex="-1" {...attrs}>
-          <ProperWrapper>
-            <h4 className={cn("search-title")}>Account</h4>
-            {searchResult.map((result) => (
-              <AccountItems key={result.id} data={result} />
-            ))}
-          </ProperWrapper>
-        </div>
-      )}
-      onClickOutside={handleHideSearchResults}
-    >
-      <div className={cn("search")}>
-        <input
-          value={searchValue}
-          placeholder="feel the rush..."
-          spellCheck={false}
-          ref={inputRef}
-          onChange={handleSearchInput}
-          onFocus={() => setShowResult(true)}
-        />
-        {!!searchValue && !loading && (
-          <button className={cn("clear-btn")} onClick={handleClear}>
-            <FontAwesomeIcon icon={faCircleXmark} />
-          </button>
+    // Using a wrapper <div> or <span> tag around the reference element solves
+    // this by creating a new parentNode context.
+    <div>
+      <HeadlessTippy
+        visible={showResult && searchResult.length > 0}
+        interactive={true}
+        render={(attrs) => (
+          <div className={cn("search-result")} tabIndex="-1" {...attrs}>
+            <ProperWrapper>
+              <h4 className={cn("search-title")}>Account</h4>
+              {searchResult.map((result) => (
+                <AccountItems key={result.id} data={result} />
+              ))}
+            </ProperWrapper>
+          </div>
         )}
+        onClickOutside={handleHideSearchResults}
+      >
+        <div className={cn("search")}>
+          <input
+            value={searchValue}
+            placeholder="feel the rush..."
+            spellCheck={false}
+            ref={inputRef}
+            onChange={handleSearchInput}
+            onFocus={() => setShowResult(true)}
+          />
+          {!!searchValue && !loading && (
+            <button className={cn("clear-btn")} onClick={handleClear}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+          )}
 
-        {loading && (
-          <FontAwesomeIcon className={cn("loading")} icon={faSpinner} />
-        )}
-        <button
-          className={cn("search-btn")}
-          onClick={(e) => e.preventDefault()}
-        >
-          {<FontAwesomeIcon icon={faMagnifyingGlass} />}
-        </button>
-      </div>
-    </HeadlessTippy>
+          {loading && (
+            <FontAwesomeIcon className={cn("loading")} icon={faSpinner} />
+          )}
+          <button
+            className={cn("search-btn")}
+            onClick={(e) => e.preventDefault()}
+          >
+            {<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          </button>
+        </div>
+      </HeadlessTippy>
+    </div>
   );
 }
 

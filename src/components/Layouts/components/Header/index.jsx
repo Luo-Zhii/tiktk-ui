@@ -30,7 +30,11 @@ function Header() {
 
   // eslint-disable-next-line no-unused-vars
   const logIn = () => {
-    setCurrentUser;
+    setCurrentUser(true);
+  };
+  // eslint-disable-next-line no-unused-vars
+  const logOut = () => {
+    setCurrentUser(false);
   };
   const MENU_ITEMS = [
     {
