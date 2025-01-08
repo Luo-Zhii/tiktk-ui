@@ -12,6 +12,9 @@
   -o-border-radius: 4px;
   border: 1px solid transparent;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   + .wrapper {
     margin-left: 8px;

@@ -41,85 +41,85 @@ function Header() {
       icon: <Language />,
       title: "English",
       children: {
-        title: "language",
+        title: "Language",
         data: [
           {
-            type: "language",
+            type: "Language",
             code: "en",
             title: "English",
           },
           {
-            type: "language",
+            type: "Language",
             code: "vi",
             title: "Tiếng Việt",
           },
           {
-            type: "language",
+            type: "Language",
             code: "fi",
             title: "Suomi",
           },
           {
-            type: "language",
+            type: "Language",
             code: "no",
             title: "Norsk",
           },
           {
-            type: "language",
+            type: "Language",
             code: "se",
             title: "Svenska",
           },
           {
-            type: "language",
+            type: "Language",
             code: "dk",
             title: "Dansk",
           },
           {
-            type: "language",
+            type: "Language",
             code: "ch",
             title: "Schweizerdeutsch",
           },
           {
-            type: "language",
+            type: "Language",
             code: "nl",
             title: "Nederlands",
           },
           {
-            type: "language",
+            type: "Language",
             code: "fr",
             title: "Français",
           },
           {
-            type: "language",
+            type: "Language",
             code: "de",
             title: "Deutsch",
           },
           {
-            type: "language",
+            type: "Language",
             code: "es",
             title: "Español",
           },
           {
-            type: "language",
+            type: "Language",
             code: "it",
             title: "Italiano",
           },
           {
-            type: "language",
+            type: "Language",
             code: "jp",
             title: "日本語",
           },
           {
-            type: "language",
+            type: "Language",
             code: "kr",
             title: "한국어",
           },
           {
-            type: "language",
+            type: "Language",
             code: "zh",
             title: "中文",
           },
           {
-            type: "language",
+            type: "Language",
             code: "ru",
             title: "Русский",
           },
@@ -167,7 +167,7 @@ function Header() {
 
   const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
-      case "language":
+      case "Language":
         console.log("Language selected:", menuItem.code);
         break;
       default:
@@ -188,6 +188,7 @@ function Header() {
           {currentUser ? (
             <>
               <Button
+                to="/"
                 types="no-color"
                 size="medium"
                 leftIcon={<FontAwesomeIcon icon={faPlus} />}
