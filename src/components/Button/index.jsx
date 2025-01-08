@@ -1,8 +1,8 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import classNames from "classnames/bind";
 import { Link } from "react-router-dom";
 import styles from "./Button.module.scss";
+import PropTypes from "prop-types";
 
 const cn = classNames.bind(styles);
 
@@ -23,6 +23,7 @@ function Button({
     onClick,
     ...passProps,
   };
+
   // Remove event listener when btn is disabled
   if (disabled) {
     Object.keys(props).forEach((key) => {
@@ -48,5 +49,18 @@ function Button({
     </Component>
   );
 }
+
+Button.propTypes = {
+  to: PropTypes.string,
+  href: PropTypes.string,
+  types: PropTypes.string,
+  size: PropTypes.string,
+  disabled: PropTypes.bool,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
+  passProps: PropTypes.node,
+};
 
 export default Button;

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 /* eslint-disable react/prop-types */
 import Button from "../../Button";
 import classNames from "classnames/bind";
@@ -18,4 +20,8 @@ function MenuItem({ data, onClick }) {
   );
 }
 
+MenuItem.propTypes = {
+  data: PropTypes.object.isRequired,
+  onClick: PropTypes.func,
+};
 export default MenuItem;

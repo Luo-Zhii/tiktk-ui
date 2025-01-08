@@ -8,6 +8,7 @@ import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 const cn = classNames.bind(styles);
 const defaultFn = () => {};
+import PropTypes from "prop-types";
 // eslint-disable-next-line react/prop-types
 function Menu({
   children,
@@ -65,4 +66,10 @@ function Menu({
   );
 }
 
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array,
+  hideOnClick: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 export default Menu;

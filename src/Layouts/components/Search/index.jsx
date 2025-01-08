@@ -15,7 +15,6 @@ import AccountItems from "../../../components/AccountItems";
 import useDebounce from "../../../hooks/useDebounce";
 
 const cn = classNames.bind(styles);
-
 function Search() {
   const [searchResult, setSearchResult] = useState([]);
   const [searchValue, setSearchValue] = useState("");

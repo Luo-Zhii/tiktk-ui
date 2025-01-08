@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Sidebar from "./Sidebar";
 import classNames from "classnames/bind";
 import styles from "./DefaultLayout.module.scss";
-
+import PropTypes from "prop-types";
 const cn = classNames.bind(styles);
 
 // eslint-disable-next-line react/prop-types
@@ -18,4 +18,7 @@ function DefaultLayout({ children }) {
   );
 }
 
+DefaultLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default DefaultLayout;
