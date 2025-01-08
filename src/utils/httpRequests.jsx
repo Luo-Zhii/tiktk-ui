@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const requests = axios.create({
-  baseURL: "https://tiktok.fullstack.edu.vn/api/",
+  baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 export const get = async (path, options = {}) => {

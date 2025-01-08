@@ -1,4 +1,4 @@
-import { HeaderOnly } from "../components/Layouts";
+import { HeaderOnly } from "../Layouts";
 import routesConfig from "../config/routes";
 
 import Home from "../Pages/Home";

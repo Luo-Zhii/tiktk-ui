@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import images from "../../../../assets/images";
+import images from "../../../assets/images";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical, faPlus } from "@fortawesome/free-solid-svg-icons";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import Button from "../../../Button";
-import Menu from "../../../Popper/Menu";
+import Button from "../../../components/Button";
+import Menu from "../../../components/Popper/Menu";
 import {
   Inbox,
   Language,
@@ -19,10 +19,10 @@ import {
   Creator,
   Settings,
   SignOut,
-} from "../../../Icons";
-import Images from "../../../Images";
+} from "../../../components/Icons";
+import Images from "../../../components/Images";
 import Search from "../Search";
-import routesConfig from "../../../../config/routes";
+import routesConfig from "../../../config/routes";
 
 const cn = classNames.bind(styles);
 function Header() {
