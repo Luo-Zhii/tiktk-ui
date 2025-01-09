@@ -6,11 +6,12 @@ import Following from "../Pages/Following";
 import Profile from "../Pages/Profile";
 import Upload from "../Pages/Upload";
 import Search from "../Pages/Search";
-
+import Explore from "../Pages/Explore";
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
   { path: routesConfig.following, component: Following },
   { path: routesConfig.profile, component: Profile },
+  { path: routesConfig.explore, component: Explore },
   { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
   { path: routesConfig.search, component: Search, layout: null },
 ];
