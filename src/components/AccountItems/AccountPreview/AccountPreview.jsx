@@ -11,11 +11,9 @@ function AccountPreview({ data }) {
     <div className={cn("wrapper")}>
       <div className={cn("header")}>
         <img className={cn("avatar")} src={data.avatar} alt={data.nickname} />
-        {data.is_followed && (
-          <Button className={cn("follow-btn")} types="primary">
-            Follow
-          </Button>
-        )}
+        <Button types="primary" className={cn("follow-btn")}>
+          Follow
+        </Button>
       </div>
       <div className={cn("body")}>
         <p className={cn("nickname")}>

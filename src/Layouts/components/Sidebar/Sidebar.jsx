@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import classNames from "classnames/bind";
 import styles from "./Sidebar.module.scss";
 import Menu, { MenuItem } from "./Menu";
@@ -17,30 +17,22 @@ import SuggestedAccounts from "../../../components/SuggestedAccounts";
 
 const cn = classNames.bind(styles);
 const INIT_PAGE = 1;
-
+const PER_PAGE = 5;
 function Sidebar() {
-  const [suggested, setSuggested] = useState([]);
-  // const [isSeeAll, setIsSeeAll] = useState(false);
-  // const [page, setPage] = useState([]);
+  const [listAccountSuggest, setListAccountSuggest] = useState([]);
+  const [numPage, setNumPage] = useState(INIT_PAGE);
+
+  const handleSeeMoreAccounts = useCallback(() => {
+    setNumPage((prev) => prev + 1);
+  }, [numPage]);
+
   useEffect(() => {
-    useServices
-      .suggested({ page: INIT_PAGE, perPage: 5 })
-      .then((data) => {
-        setSuggested(data);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
-  // const handleClickPrintMore = () => {
-  //   setPage((prev) => prev + 1);
-  //   useServices
-  //     .suggested({ page: page, perPage: 5 })
-  //     .then((data) => {
-  //       setSuggested([...suggested, ...data]);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
+    const fetchApi = async () => {
+      const data = await useServices.suggested(numPage, PER_PAGE);
+      setListAccountSuggest((prev) => [...prev, ...data]);
+    };
+    fetchApi();
+  }, [numPage]);
   return (
     <aside className={cn("wrapper")}>
       <Menu>
@@ -65,8 +57,8 @@ function Sidebar() {
       </Menu>
       <SuggestedAccounts
         label="Suggested accounts"
-        data={suggested}
-        // onClick={handleClickPrintMore}
+        data={listAccountSuggest}
+        onClick={handleSeeMoreAccounts}
       />
     </aside>
   );

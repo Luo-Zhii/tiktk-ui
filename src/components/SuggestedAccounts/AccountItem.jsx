@@ -6,6 +6,9 @@ import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import Tippy from "@tippyjs/react/headless";
 import { Wrapper as PopperWrapper } from "../Popper";
 import AccountPreview from "../AccountItems/AccountPreview";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+
 const cn = classNames.bind(styles);
 
 function AccountItem({ data }) {
@@ -21,30 +24,41 @@ function AccountItem({ data }) {
 
   return (
     <div>
-      <Tippy
-        interactive
-        delay={[800, 0]}
-        offset={[20, 0]}
-        placement="bottom"
-        render={renderPreview}
+      <Link
+        to={`/tiktk-ui/profile/@${data.nickname}`}
+        className={cn("wrapper")}
       >
-        <div className={cn("account-item")}>
-          <img src={data.avatar} alt="" className={cn("avatar")} />
-          <div className={cn("item-info")}>
-            <p className={cn("nickname")}>
-              <strong>{data.nickname}</strong>
-              {data.tick && (
-                <FontAwesomeIcon className={cn("check")} icon={faCheckCircle} />
-              )}
-            </p>
-            <p className={cn("name")}>
-              {data.first_name} {data.last_name}
-            </p>
+        <Tippy
+          interactive
+          delay={[900, 0]}
+          offset={[20, 0]}
+          placement="bottom"
+          render={renderPreview}
+        >
+          <div className={cn("account-item")}>
+            <img src={data.avatar} alt="" className={cn("avatar")} />
+            <div className={cn("item-info")}>
+              <p className={cn("nickname")}>
+                <strong>{data.nickname}</strong>
+                {data.tick && (
+                  <FontAwesomeIcon
+                    className={cn("check")}
+                    icon={faCheckCircle}
+                  />
+                )}
+              </p>
+              <p className={cn("name")}>
+                {data.first_name} {data.last_name}
+              </p>
+            </div>
           </div>
-        </div>
-      </Tippy>
+        </Tippy>
+      </Link>
     </div>
   );
 }
 
+AccountItem.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 export default AccountItem;
