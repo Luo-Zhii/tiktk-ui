@@ -1,5 +1,4 @@
-.popper-wrapper {
-  position: absolute;
+.wrapper {
   max-height: min(-156px + 100vh, 734px);
   min-height: 100px;
   width: 100%;
@@ -14,4 +13,5 @@
   -o-border-radius: 8px;
   display: flex;
   flex-direction: column;
+  z-index: 9999;
 }

@@ -8,7 +8,7 @@ import {
   faMagnifyingGlass,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
-import { Wrapper as ProperWrapper } from "../../../components/Popper";
+import { Wrapper as PopperWrapper } from "../../../components/Popper";
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 import AccountItems from "../../../components/AccountItems";
@@ -69,12 +69,12 @@ function Search() {
         interactive={true}
         render={(attrs) => (
           <div className={cn("search-result")} tabIndex="-1" {...attrs}>
-            <ProperWrapper>
+            <PopperWrapper>
               <h4 className={cn("search-title")}>Account</h4>
               {searchResult.map((result) => (
                 <AccountItems key={result.id} data={result} />
               ))}
-            </ProperWrapper>
+            </PopperWrapper>
           </div>
         )}
         onClickOutside={handleHideSearchResults}

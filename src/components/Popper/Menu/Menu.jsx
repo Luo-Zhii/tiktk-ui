@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Tippy from "@tippyjs/react/headless";
-import { Wrapper as PopperWrapper } from "../index";
+import { Wrapper as PopperWrapper } from "../Popper";
 import MenuItem from "./MenuItem";
 import Header from "./Header";
 import classNames from "classnames/bind";
@@ -71,7 +71,7 @@ function Menu({
 Menu.propTypes = {
   children: PropTypes.node.isRequired,
   items: PropTypes.array,
-  hideOnClick: PropTypes.bool,
+  hideOnClick: PropTypes.node,
   onChange: PropTypes.func,
 };
 export default Menu;
