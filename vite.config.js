@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react-swc";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/tiktk-ui/",
+  base: "/tiktk-ui/home",
   optimizeDeps: {
     include: ["prop-types"],
   },
