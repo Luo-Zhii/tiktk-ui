@@ -65,8 +65,15 @@ opacity:0.99;
     
     color: #fff;
     font-size: 18px;
+  
+    a {
+      color: #ff5722;
+      text-decoration: underline;
+
+    }
   }
   
+
   .bottom-nav {
     position: fixed;
     right: 189px;
