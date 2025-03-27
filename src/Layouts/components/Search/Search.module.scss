@@ -1,9 +1,12 @@
+
+
 // Search
 .search,
 .search-result {
   width: 50rem;
   height: var(--search-height);
 }
+
 
 .search {
   background-color: rgba(22, 24, 35, 0.06);
@@ -48,11 +51,18 @@
   }
 }
 
+.tippy-box {
+  background-color: white !important;
+  color: black !important; /* Đổi màu chữ nếu cần */
+  border: 1px solid #ddd; /* Thêm viền nếu muốn */
+}
+
 .search-title {
   padding: 5px 12px;
   font-size: 1.4rem;
   font-weight: 600;
   color: rgba(22, 24, 35, 0.5);
+  background-color: #ffffff;
 }
 //  In search
 .clear-btn,
