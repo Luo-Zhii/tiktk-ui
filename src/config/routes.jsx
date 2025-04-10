@@ -5,5 +5,7 @@ const routes = {
   upload: "/tiktk-ui/upload",
   search: "/tiktk-ui/search",
   explore: "/tiktk-ui/explore",
+  login: "/tiktk-ui/login",
+  register: "/tiktk-ui/register",
 };
 export default routes;

@@ -214,12 +214,13 @@ function Header() {
               <Button types="text" size="">
                 Upload
               </Button>
-              <Button types="primary">Log in</Button>
-              <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                <button className={cn("more-btn")}>
-                  {<FontAwesomeIcon icon={faEllipsisVertical} />}
-                </button>
-              </Menu>
+              <Link to={routesConfig.login}>
+                <Button types="primary">Log in</Button>
+                <Menu items={MENU_ITEMS} onChange={handleMenuChange}></Menu>
+              </Link>
+              <button className={cn("more-btn")}>
+                {<FontAwesomeIcon icon={faEllipsisVertical} />}
+              </button>
             </>
           )}
         </div>
