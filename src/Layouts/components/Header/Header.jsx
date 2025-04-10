@@ -214,7 +214,7 @@ function Header() {
               <Button types="text" size="">
                 Upload
               </Button>
-              <Link to={routesConfig.auth}>
+              <Link to={routesConfig.login}>
                 <Button types="primary">Log in</Button>
                 <Menu items={MENU_ITEMS} onChange={handleMenuChange}></Menu>
               </Link>

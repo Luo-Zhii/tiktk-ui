@@ -5,8 +5,8 @@ import axios from '../config/axios-customize';
  * 
 Module Auth
  */
-export const callRegister = (name: string, email: string, password: string, age: number, gender: string, address: string) => {
-    return axios.post<IBackendRes<IUser>>('/auth/register', { name, email, password, age, gender, address })
+export const callRegister = (name: string, email: string, password: string, age: number, gender: string) => {
+    return axios.post<IBackendRes<IUser>>('/auth/register', { name, email, password, age, gender })
 }
 
 export const callLogin = (username: string, password: string) => {

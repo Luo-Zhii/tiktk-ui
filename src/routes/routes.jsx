@@ -7,7 +7,8 @@ import Profile from "../Pages/Profile";
 import Upload from "../Pages/Upload";
 import Search from "../Pages/Search";
 import Explore from "../Pages/Explore";
-import Login from "../Pages/Auth";
+import Login from "../Pages/Auth/Login";
+import RegisterPage from "../Pages/Auth/Register";
 const publicRoutes = [
   { path: routesConfig.home, component: Home },
   { path: routesConfig.following, component: Following },
@@ -15,7 +16,8 @@ const publicRoutes = [
   { path: routesConfig.explore, component: Explore },
   { path: routesConfig.upload, component: Upload, layout: HeaderOnly },
   { path: routesConfig.search, component: Search, layout: null },
-  { path: routesConfig.auth, component: Login, layout: null },
+  { path: routesConfig.login, component: Login, layout: null },
+  { path: routesConfig.register, component: RegisterPage, layout: null },
 ];
 const privateRoutes = [];
 
