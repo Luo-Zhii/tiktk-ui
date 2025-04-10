@@ -3,6 +3,7 @@ import { publicRoutes } from "./routes";
 
 import { DefaultLayout } from "./Layouts";
 import { Fragment } from "react";
+import MouseTracker from "./components/MouseTracker";
 
 function App() {
   return (
@@ -32,9 +33,12 @@ function App() {
             );
           })}
         </Routes>
+        {/* <MouseTracker/> */}
+
       </div>
     </Router>
   );
 }
 
 export default App;
+ 

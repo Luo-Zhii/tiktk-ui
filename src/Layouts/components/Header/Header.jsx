@@ -26,7 +26,7 @@ import routesConfig from "../../../config/routes";
 
 const cn = classNames.bind(styles);
 function Header() {
-  const [currentUser, setCurrentUser] = useState(true);
+  const [currentUser, setCurrentUser] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const logIn = () => {
