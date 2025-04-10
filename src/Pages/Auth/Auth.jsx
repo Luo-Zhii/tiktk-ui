@@ -72,14 +72,6 @@ const LoginForm = ({ mode, formData, handleChange, onSubmit }) => {
             value={formData.age}
             onChange={handleChange}
           />
-          <Input
-            type="text"
-            id="address"
-            label="Enter address"
-            disabled={mode === "login"}
-            value={formData.address}
-            onChange={handleChange}
-          />
         </div>
       </div>
       <button

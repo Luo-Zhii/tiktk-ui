@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.jsx";
 import GlobalStyles from "./components/GlobalStyles/index.jsx";
 import { Provider } from "react-redux";
-import store from "./redux/store.jsx";
+import {store} from "../src/redux/store.tsx";
 createRoot(document.getElementById("root")).render(
   // <StrictMode>
   <GlobalStyles>

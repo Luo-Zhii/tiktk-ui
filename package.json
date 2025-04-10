@@ -20,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@reduxjs/toolkit": "^2.6.1",
     "@tippyjs/react": "^4.2.6",
+    "async-mutex": "^0.5.0",
     "axios": "^1.7.9",
     "classnames": "^2.5.1",
     "normalize.css": "^8.0.1",
