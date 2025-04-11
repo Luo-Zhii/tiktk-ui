@@ -35,6 +35,7 @@ function Sidebar() {
   }, [numPage]);
   return (
     <aside className={cn("wrapper")}>
+      
       <Menu>
         <MenuItem
           title={"For you"}

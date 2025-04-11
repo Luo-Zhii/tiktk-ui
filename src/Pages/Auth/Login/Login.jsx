@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { callLogin } from '../../../config/api';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserLoginInfo } from '../../../redux/slice/accountSlice';
+import { setUserLoginInfo } from '../../../redux/slice/accountSlide';
 import styles from '../Auth.module.scss';
 import { useAppSelector } from '../../../redux/hooks';
 
@@ -17,6 +17,8 @@ const LoginPage = () => {
     let location = useLocation();
     let params = new URLSearchParams(location.search);
     const callback = params?.get("callback");
+
+
 
     useEffect(() => {
         //đã login => redirect to '/'
@@ -35,6 +37,7 @@ const LoginPage = () => {
             localStorage.setItem('access_token', res?.data?.data?.access_token || res?.data?.access_token || '');
             dispatch(setUserLoginInfo(res?.data?.user || {}));
             message.success('Đăng nhập tài khoản thành công!');
+            console.log(res.data)
             window.location.href = callback ? callback : '/';
         } else {
             notification.error({
@@ -46,6 +49,7 @@ const LoginPage = () => {
         }
     };
 
+console.log("auth2", isAuthenticated)
 
     return (
         <div className={styles["login-page"]}>

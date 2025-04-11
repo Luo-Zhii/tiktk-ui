@@ -7,20 +7,21 @@ import routesConfig from "../../../config/routes";
 
 const { Option } = Select;
 
-const RegisterPage = () => {
+const RegisterPage =  () => {
   const navigate = useNavigate();
   const [isSubmit, setIsSubmit] = useState(false);
 
   const onFinish = async (values) => {
-    const { name, email, password, age, gender, address } = values;
+    const { name, email, password, age, gender } = values;
     setIsSubmit(true);
     try {
-      const res = await callRegister(name, email, password, +age, gender, address);
+      const res = await callRegister(name, email, password, +age, gender);
 
       // nếu backend trả về data._id là thành công
       if (res.data?._id) {
         message.success("Đăng ký tài khoản thành công!");
-        window.location.href = 'http://localhost:5173/tiktk-ui/login';
+        navigate('/');
+        // window.location.href = 'http://localhost:5173/tiktk-ui/login';
       } else {
         notification.error({
           message: "Có lỗi xảy ra",

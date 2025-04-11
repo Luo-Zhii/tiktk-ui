@@ -3,7 +3,7 @@ import { IBackendRes } from "../types/interface.d";
 import { Mutex } from "async-mutex";
 import axiosClient, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { store } from "../redux/store";
-import { setRefreshTokenAction } from "../redux/slice/accountSlice";
+import { setRefreshTokenAction } from "../redux/slice/accountSlide";
 
 
 interface AccessTokenResponse {

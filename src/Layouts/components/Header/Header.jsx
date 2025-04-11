@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+// src/components/Header/Header.jsx
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import images from "../../../assets/images";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
@@ -23,19 +24,44 @@ import {
 import Images from "../../../components/Images";
 import Search from "../Search";
 import routesConfig from "../../../config/routes";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { callLogout } from "../../../config/api";
+import { setLogoutAction, setUserLoginInfo } from "../../../redux/slice/accountSlide";
+import { jwtDecode } from "jwt-decode";
 
 const cn = classNames.bind(styles);
-function Header() {
-  const [currentUser, setCurrentUser] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
-  const logIn = () => {
-    setCurrentUser(true);
-  };
-  // eslint-disable-next-line no-unused-vars
-  const logOut = () => {
-    setCurrentUser(false);
-  };
+function Header() {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  // Lấy trạng thái từ Redux
+  const reduxIsAuthenticated = useAppSelector((state) => state.account.isAuthenticated);
+  const user = useAppSelector((state) => state.account.user);
+
+  // Kiểm tra localStorage; nếu có token, coi như đã đăng nhập
+  const localToken = localStorage.getItem("access_token");
+  const isAuthenticated = reduxIsAuthenticated || !!localToken;
+
+  // Nếu có token trong localStorage, decode token và cập nhật Redux state (nếu chưa có)
+  useEffect(() => {
+    if (localToken && !reduxIsAuthenticated) {
+      try {
+        const decoded = jwtDecode(localToken);
+        const decodedUser = {
+          _id: decoded._id,
+          email: decoded.email,
+          name: decoded.name || "Unknown User",
+        };
+        console.log("Decoded user:", decodedUser);
+        dispatch(setUserLoginInfo(decodedUser));
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+  }, [localToken, reduxIsAuthenticated, dispatch]);
+
+
   const MENU_ITEMS = [
     {
       icon: <Language />,
@@ -43,86 +69,22 @@ function Header() {
       children: {
         title: "Language",
         data: [
-          {
-            type: "Language",
-            code: "en",
-            title: "English",
-          },
-          {
-            type: "Language",
-            code: "vi",
-            title: "Tiếng Việt",
-          },
-          {
-            type: "Language",
-            code: "fi",
-            title: "Suomi",
-          },
-          {
-            type: "Language",
-            code: "no",
-            title: "Norsk",
-          },
-          {
-            type: "Language",
-            code: "se",
-            title: "Svenska",
-          },
-          {
-            type: "Language",
-            code: "dk",
-            title: "Dansk",
-          },
-          {
-            type: "Language",
-            code: "ch",
-            title: "Schweizerdeutsch",
-          },
-          {
-            type: "Language",
-            code: "nl",
-            title: "Nederlands",
-          },
-          {
-            type: "Language",
-            code: "fr",
-            title: "Français",
-          },
-          {
-            type: "Language",
-            code: "de",
-            title: "Deutsch",
-          },
-          {
-            type: "Language",
-            code: "es",
-            title: "Español",
-          },
-          {
-            type: "Language",
-            code: "it",
-            title: "Italiano",
-          },
-          {
-            type: "Language",
-            code: "jp",
-            title: "日本語",
-          },
-          {
-            type: "Language",
-            code: "kr",
-            title: "한국어",
-          },
-          {
-            type: "Language",
-            code: "zh",
-            title: "中文",
-          },
-          {
-            type: "Language",
-            code: "ru",
-            title: "Русский",
-          },
+          { type: "Language", code: "en", title: "English" },
+          { type: "Language", code: "vi", title: "Tiếng Việt" },
+          { type: "Language", code: "fi", title: "Suomi" },
+          { type: "Language", code: "no", title: "Norsk" },
+          { type: "Language", code: "se", title: "Svenska" },
+          { type: "Language", code: "dk", title: "Dansk" },
+          { type: "Language", code: "ch", title: "Schweizerdeutsch" },
+          { type: "Language", code: "nl", title: "Nederlands" },
+          { type: "Language", code: "fr", title: "Français" },
+          { type: "Language", code: "de", title: "Deutsch" },
+          { type: "Language", code: "es", title: "Español" },
+          { type: "Language", code: "it", title: "Italiano" },
+          { type: "Language", code: "jp", title: "日本語" },
+          { type: "Language", code: "kr", title: "한국어" },
+          { type: "Language", code: "zh", title: "中文" },
+          { type: "Language", code: "ru", title: "Русский" },
         ],
       },
     },
@@ -136,27 +98,12 @@ function Header() {
       title: "Dark mode",
     },
   ];
+
   const USER_ITEM = [
-    {
-      icon: <User />,
-      title: "View Profile",
-      to: "/user",
-    },
-    {
-      icon: <Coins />,
-      title: "Get Coins",
-      to: "/coins",
-    },
-    {
-      icon: <Creator />,
-      title: "Creator tools",
-      to: "/creator",
-    },
-    {
-      icon: <Settings />,
-      title: "Settings",
-      to: "/settings",
-    },
+    { icon: <User />, title: "View Profile", to: "/user" },
+    { icon: <Coins />, title: "Get Coins", to: "/coins" },
+    { icon: <Creator />, title: "Creator tools", to: "/creator" },
+    { icon: <Settings />, title: "Settings", to: "/settings" },
     ...MENU_ITEMS,
     {
       icon: <SignOut />,
@@ -175,20 +122,24 @@ function Header() {
     }
   };
 
+  console.log("auth", isAuthenticated);
+  console.log("user", user);
+
   return (
     <header className={cn("wrapper")}>
       <div className={cn("inner")}>
+        
         <Link to={routesConfig.home}>
-          <img src={images.logo} />
+          <img src={images.logo} alt="Logo" />
         </Link>
 
         <Search />
 
         <div className={cn("action")}>
-          {currentUser ? (
+          {isAuthenticated ? (
             <>
               <Button
-                to="/"
+                to="/upload"
                 types="no-color"
                 size="medium"
                 leftIcon={<FontAwesomeIcon icon={faPlus} />}
@@ -197,15 +148,16 @@ function Header() {
               </Button>
               <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
                 <button className={cn("user-mess")}>
-                  <Inbox />
+                  <Inbox /> 
                 </button>
               </Tippy>
 
+      <span>Welcome {user?.email}</span>
               <Menu items={USER_ITEM} onChange={handleMenuChange}>
                 <Images
                   className={cn("user-avatar")}
                   src={images.vn}
-                  alt="haha"
+                  alt="User Avatar"
                 />
               </Menu>
             </>
@@ -216,10 +168,10 @@ function Header() {
               </Button>
               <Link to={routesConfig.login}>
                 <Button types="primary">Log in</Button>
-                <Menu items={MENU_ITEMS} onChange={handleMenuChange}></Menu>
               </Link>
+              <Menu items={MENU_ITEMS} onChange={handleMenuChange} />
               <button className={cn("more-btn")}>
-                {<FontAwesomeIcon icon={faEllipsisVertical} />}
+                <FontAwesomeIcon icon={faEllipsisVertical} />
               </button>
             </>
           )}
