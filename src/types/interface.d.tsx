@@ -32,3 +32,20 @@ export interface IUser {
     updatedAt?: string;
 }
 
+
+export interface IMouseLog {
+    _id?: string;
+    userId: string;
+    name: string;
+    email: string;
+    date: string;
+    time: string;
+    duration: number;
+    leftClick: boolean;
+    rightClick: boolean;
+    middleClick: boolean;
+    mouseX: number;
+    mouseY: number;
+    scrollX: number;
+    scrollY: number;
+}

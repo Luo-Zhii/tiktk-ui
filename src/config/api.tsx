@@ -1,4 +1,4 @@
-import { IBackendRes,  IAccount, IUser,IGetAccount } from '../types/interface.d';
+import { IBackendRes,  IAccount, IUser,IGetAccount, IMouseLog } from '../types/interface.d';
 import axios from '../config/axios-customize';
 
 /**
@@ -41,4 +41,16 @@ export const callDeleteUser = (id: string) => {
     return axios.delete<IBackendRes<IUser>>(`/users/${id}`);
 }
 
+/** 
+ * 
+ * Mouse Log 
+ */
 
+export const callCreateMouseLogToAstra = (logs: IMouseLog[]) => {
+    return axios.post<IBackendRes<IMouseLog>>('/astra/log', logs)
+}
+
+
+export const callCreateMouseLogToMongo = (logs: IMouseLog[]) => {
+    return axios.post<IBackendRes<IMouseLog>>('/mouse-event', logs)
+}

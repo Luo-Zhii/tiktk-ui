@@ -59,7 +59,7 @@ function App() {
             }
           />
         </Routes>
-        {/* <MouseTracker/> */}
+        <MouseTracker/>
       </div>
       </LayoutApp>
     </Router>
