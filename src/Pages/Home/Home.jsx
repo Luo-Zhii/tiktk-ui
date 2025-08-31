@@ -18,7 +18,6 @@ function Home({ index }) {
     return queries[Math.floor(Math.random() * queries.length)];
   };
   const getVideos = (length) => {
-    // Replace with your Pexels API Key
     const client = createClient("l11NXAx4g5cCT03ePb0WbvC5sJWy5Ghbdpx9OFGDZZ3hMNhj5AYl4Axa");
 
     const query = randomQuery();

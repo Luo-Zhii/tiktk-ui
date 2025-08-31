@@ -5,7 +5,7 @@ import AccountItem from "./AccountItem";
 const cn = classNames.bind(styles);
 function SuggestedAccounts({ label, data = [], onClick = () => {} }) {
   return (
-    <div className={cn("wrapper")}>
+    <div className={cn("wrapper")} data-area="suggested-accounts" >
       <p className={cn("label")}>{label}</p>
       {data.map((account) => (
         <AccountItem key={account.id} data={account} />

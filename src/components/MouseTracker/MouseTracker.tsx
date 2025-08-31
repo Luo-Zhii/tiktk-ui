@@ -15,7 +15,8 @@ export default function MouseTracker() {
   const [startTime, setStartTime] = useState<number>(Date.now());
   const [user, setUser] = useState<DecodedToken | null>(null);
 
-  // Lấy thông tin user từ token
+  // check token from local storage
+  // and decode it to get user information
   useEffect(() => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -31,13 +32,50 @@ export default function MouseTracker() {
     }
   }, []);
 
-  // Lắng nghe sự kiện chuột
+  
+  // Track mouse clicks and log them
   useEffect(() => {
     if (!user) return;
 
     const handleClick = (e: MouseEvent) => {
       const now = Date.now();
       const duration = (now - startTime) / 1000;
+
+      let area = '';
+      let el = e.target as HTMLElement;
+      
+      
+      while (el && el !== document.body) {
+        if (el.dataset.area) {
+          area = el.dataset.area;
+    
+          
+          const rect = el.getBoundingClientRect();
+          
+          
+          const xMin = rect.left;      
+          const xMax = rect.right;     
+          const yMin = rect.top;       
+          const yMax = rect.bottom;    
+    
+          
+          const areaCoordinates = {
+            [area]: [xMin, xMax, yMin, yMax],
+          };
+          console.log(JSON.stringify(areaCoordinates));
+    
+          
+          const mouseX = e.clientX;
+          const mouseY = e.clientY;
+    
+          if (mouseX >= xMin && mouseX <= xMax && mouseY >= yMin && mouseY <= yMax) {
+            area = el.dataset.area || 'unknown';
+          }
+    
+          break;
+        }
+        el = el.parentElement!;
+      }
 
       const log = {
         _id: undefined,
@@ -49,15 +87,17 @@ export default function MouseTracker() {
         duration,
         leftClick: e.button === 0,
         rightClick: e.button === 2,
-        middleClick: e.button === 1,
+        middleClick: e.button === 1,  
         mouseX: e.clientX,
         mouseY: e.clientY,
         scrollX: window.scrollX,
         scrollY: window.scrollY,
+        area: area || 'unknown',
       };
 
       console.log('MouseTracker mounted', log);
-      setEvents((prev) => [...prev, log]);  // Thêm log mới vào mảng events
+      setEvents((prev) => [...prev, log]);  
+      
       setStartTime(now);
     };
 
@@ -65,42 +105,50 @@ export default function MouseTracker() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, [startTime, user]);
 
-  // Gửi logs sau mỗi khoảng thời gian (5s) nếu có sự kiện mới
+  
+  // logs to astradb
   useEffect(() => {
     if (!user || events.length === 0) return;
 
     const interval = setInterval(() => {
       if (events.length > 0) {
-        callCreateMouseLogToAstra(events)  // Gửi toàn bộ logs
+        callCreateMouseLogToAstra(events)  
+        
           .then((res) => {
-            console.log('Mouse logs sent:', res.data);
-            setEvents([]);  // Xóa logs sau khi gửi thành công
+            console.log('Mouse logs sent to AstraDB:', res.data);
+            setEvents([]);  
+            
           })
           .catch((err) => {
             console.error('Failed to send mouse logs:', err);
           });
       }
-    }, 5000);  // Gửi mỗi 5 giây
+    }, 5000);  
+    
 
     return () => clearInterval(interval);
   }, [events, user]);
 
-  // Gửi logs sau mỗi khoảng thời gian (5s) nếu có sự kiện mới
+  
+  // logs to mongodb
   useEffect(() => {
     if (!user || events.length === 0) return;
 
     const interval = setInterval(() => {
       if (events.length > 0) {
-        callCreateMouseLogToMongo(events)  // Gửi toàn bộ logs
+        callCreateMouseLogToMongo(events)  
+        
           .then((res) => {
-            console.log('Mouse logs sent:', res.data);
-            setEvents([]);  // Xóa logs sau khi gửi thành công
+            console.log('Mouse logs sent to MongoDB:', res.data);
+            setEvents([]);  
+            
           })
           .catch((err) => {
             console.error('Failed to send mouse logs:', err);
           });
       }
-    }, 5000);  // Gửi mỗi 5 giây
+    }, 5000);  
+    
 
     return () => clearInterval(interval);
   }, [events, user]);

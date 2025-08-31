@@ -100,7 +100,7 @@ function Header() {
   ];
 
   const USER_ITEM = [
-    { icon: <User />, title: "View Profile", to: "/user" },
+    { icon: <User />, title: "View Profile", to: "/user"},
     { icon: <Coins />, title: "Get Coins", to: "/coins" },
     { icon: <Creator />, title: "Creator tools", to: "/creator" },
     { icon: <Settings />, title: "Settings", to: "/settings" },
@@ -126,12 +126,12 @@ function Header() {
   console.log("user", user);
 
   return (
-    <header className={cn("wrapper")}>
-      <div className={cn("inner")}>
+    <header className={cn("wrapper")} >
+      <div className={cn("inner")} data-area="header">
         
         <Link to={routesConfig.home}>
-          <img src={images.logo} alt="Logo" />
-        </Link>
+          <img src={images.logo} alt="Logo" data-area="logo" />
+        </Link>   
 
         <Search />
 
@@ -142,12 +142,14 @@ function Header() {
                 to="/upload"
                 types="no-color"
                 size="medium"
-                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                leftIcon={<FontAwesomeIcon icon={faPlus} 
+                data-area="upload"
+                />}
               >
-                <span>Upload</span>
+                <span data-area="upload">Upload</span>
               </Button>
               <Tippy delay={[0, 200]} placement="bottom" content="Inbox">
-                <button className={cn("user-mess")}>
+                <button className={cn("user-mess")} data-area="inbox">
                   <Inbox /> 
                 </button>
               </Tippy>
@@ -158,6 +160,7 @@ function Header() {
                   className={cn("user-avatar")}
                   src={images.vn}
                   alt="User Avatar"
+                  data-area="user-avatar"
                 />
               </Menu>
             </>

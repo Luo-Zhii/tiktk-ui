@@ -8,6 +8,7 @@ import LayoutApp from './components/Share/layout.app';
 import { fetchAccount } from './redux/slice/accountSlide';
 import { useAppDispatch } from "./redux/hooks";
 import { useDispatch } from "react-redux";
+
 function App() {
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -19,6 +20,7 @@ function App() {
     dispatch(fetchAccount())
   }, [])
 
+  
 
 
   return (

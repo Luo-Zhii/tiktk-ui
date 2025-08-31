@@ -34,8 +34,7 @@ function Sidebar() {
     fetchApi();
   }, [numPage]);
   return (
-    <aside className={cn("wrapper")}>
-      
+    <aside className={cn("wrapper")} data-area="sidebar">
       <Menu>
         <MenuItem
           title={"For you"}

@@ -54,6 +54,7 @@ const VideoCard = ({
         onClick={togglePlay}
         id={index}
         autoPlay={index === 1}
+        data-area="video"
       >
         <source src={videoURL} type="video/mp4" />
       </video>

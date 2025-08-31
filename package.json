@@ -18,6 +18,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@hotjar/browser": "^1.0.9",
     "@reduxjs/toolkit": "^2.6.1",
     "@tippyjs/react": "^4.2.6",
     "antd": "^5.24.6",

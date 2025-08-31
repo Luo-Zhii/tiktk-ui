@@ -87,6 +87,7 @@ function Search() {
             ref={inputRef}
             onChange={handleSearchInput}
             onFocus={() => setShowResult(true)}
+            data-area="search"
           />
           {!!searchValue && !loading && (
             <button className={cn("clear-btn")} onClick={handleClear}>

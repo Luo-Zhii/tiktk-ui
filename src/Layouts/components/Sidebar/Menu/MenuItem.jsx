@@ -11,7 +11,7 @@ function MenuItem({ title, icon, to, activeIcon }) {
     >
       <span className={cn("icon")}>{icon}</span>
       <span className={cn("active-icon")}>{activeIcon}</span>
-      <span className={cn("title")}>{title}</span>
+      <span className={cn("title")} data-area={title}>{title}</span>
     </NavLink>
   );
 }

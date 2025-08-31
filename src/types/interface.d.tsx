@@ -48,4 +48,5 @@ export interface IMouseLog {
     mouseY: number;
     scrollX: number;
     scrollY: number;
+    area: string;
 }
