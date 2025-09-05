@@ -18,3 +18,11 @@ EXPOSE 5173
 
 # Define the command to run your app
 CMD ["npm", "run", "dev", "--", "--host"]
+
+
+#COMMAND 
+# docker build -t tiktk-ui . 
+# docker run -d -p 5173:5173 tiktk-ui 
+# docker login 
+# docker tag tiktk-ui:latest luozhii/tiktk-ui:latest
+# docker push luozhii/tiktk-ui:latest
