@@ -19,7 +19,7 @@ pipeline {
                 script {
                     sshagent(['jenkins']) {     
                         sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << 'EOF'
+                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << EOF
                           ls
                           pwd
                           cd ~/_work/tiktard/${REPO_DIR}
