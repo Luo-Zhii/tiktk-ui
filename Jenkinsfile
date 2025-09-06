@@ -17,16 +17,16 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 script {
-                    sshagent(['jenkins']) {              
+                    sshagent(['jenkins']) {
                         sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << EOF
-                          ls
-                          pwd
-                          cd ~/_work/tiktard/${REPO_DIR}
-                          pwd
-                          git pull origin main
+                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} '
+                          ls &&
+                          pwd &&
+                          cd ~/_work/tiktard/${REPO_DIR} &&
+                          pwd &&
+                          git pull origin main &&
                           sudo docker compose up -d --build
-                        EOF
+                        '
                         """
                     }
                 }
