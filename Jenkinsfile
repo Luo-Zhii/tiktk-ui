@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        EC2_SSH_PRIVATE_KEY = credentials('jenkins') 
+        EC2_SSH_PRIVATE_KEY = credentials('admin') 
         EC2_HOST = '18.142.50.71'
         REPO_DIR = 'tiktk-ui'
     }
@@ -17,16 +17,29 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 script {
-                    sshagent(['jenkins']) {       
+                    // sshagent dùng private key Jenkins
+                    sshagent(['admin']) {       
                         sh """
-                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << EOF
-                          ls
-                          pwd
+                        # Lấy public key từ private key
+                        PUB_KEY=\$(ssh-keygen -y -f \$EC2_SSH_PRIVATE_KEY)
+
+                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} 'bash -s' <<'ENDSSH'
+                          mkdir -p ~/.ssh
+                          chmod 700 ~/.ssh
+                          # Thêm public key nếu chưa tồn tại
+                          grep -qxF "\$PUB_KEY" ~/.ssh/authorized_keys || echo "\$PUB_KEY" >> ~/.ssh/authorized_keys
+                          chmod 600 ~/.ssh/authorized_keys
+
+                          # Deploy
+                          mkdir -p ~/_work/tiktard/${REPO_DIR}
                           cd ~/_work/tiktard/${REPO_DIR}
-                          pwd
-                          git pull origin main
+                          if [ -d .git ]; then
+                            git pull origin main
+                          else
+                            git clone git@github.com:Luo-Zhii/${REPO_DIR}.git .
+                          fi
                           sudo docker compose up -d --build
-                        EOF
+ENDSSH
                         """
                     }
                 }
