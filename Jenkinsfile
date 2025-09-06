@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        EC2_SSH_PRIVATE_KEY = credentials('admin') 
+        EC2_SSH_PRIVATE_KEY = credentials('jenkins') 
         EC2_HOST = '54.169.102.23'
         REPO_DIR = 'tiktk-ui'
     }
@@ -17,7 +17,7 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 script {
-                    sshagent(['admin']) {     
+                    sshagent(['jenkins']) {     
                         sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${EC2_HOST} << 'EOF'
                           ls
