@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_SSH_PRIVATE_KEY = credentials('jenkins') 
-        EC2_HOST = '18.142.50.71'
+        EC2_HOST = '13.215.199.31'
         REPO_DIR = 'tiktk-ui'
     }
 
