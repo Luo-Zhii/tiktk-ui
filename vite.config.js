@@ -8,4 +8,9 @@ export default defineConfig({
   optimizeDeps: {
     include: ["prop-types"],
   },
+  server: {
+    host: true,
+    port: 5173,
+    allowedHosts: ["luo.io.vn", "www.luo.io.vn"],
+  },
 });
